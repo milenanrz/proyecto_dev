@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %} Adicionar fotografía {% endblock %}
+{% block content %}
+
+<form class="form-group" method="post" enctype="multipart/form-data" action="/web/new_photo">
+
+    <h2 class="info-title"> Registro de una fotografía </h2>
+
+    <div class="form-floating mb-3">
+        <input class="form-control" type="text" name="photographer_name" id="photographer_name" placeholder="Nombre">
+        <label for="photographer_name"> Nombre del fotógrafo </label>
+    </div>
+
+
+    <div class="form-floating mb-3">
+        <input class="form-control" type="text" name="title" id="title" placeholder="Título de la fotografía">
+        <label for="title"> Título </label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <select class="form-select" name="category" id="category">
+            <option value="" disabled selected>Seleccione un estilo fotográfico</option>
+            {% for category in categories %}
+            <option value="{{ category }}">{{ category }}</option>
+            {% endfor %}
+        </select>
+        <label for="category"> Categoría </label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <select class="form-select" name="photo_created_at" id="photo_created_at">
+          <option value="" disabled selected>Seleccione un año</option>
+          {% for photo_created_at in range(2025, 1899, -1) %}
+          <option value="{{ photo_created_at }}">{{ photo_created_at }}</option>
+          {% endfor %}
+        </select>
+        <label for="photo_created_at">Año de captura</label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input class="form-control" type="file" name="photo_image" id="photo_image" placeholder="Ingrese la fotografía" accept="image/*">
+        <label for="photo_image"> Fotografía </label>
+    </div>
+
+    <button type="submit"> Registrar fotografía </button>
+</form>
+
+{% endblock %}

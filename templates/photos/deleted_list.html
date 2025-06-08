@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %} Fotografías eliminadas {% endblock %}
+
+{% block content %}
+<h2 class="info-title"> Fotografías eliminadas </h2>
+<div class="container my-4">
+    {% if photos %}
+        {% for photo in photos %}
+            <div class="row">
+                <div class="col-md-6">
+                    <ul>
+                        <li><strong>ID: </strong>{{ photo.id }}</li>
+                        <li><strong>Título: </strong>{{ photo.title }}</li>
+                        <li><strong>Fotógrafo: </strong>{{ photo.photographer.name }}</li>
+                        <li><strong>Estilo Fotográfico: </strong>{{ photo.category.value }}</li>
+                        <li><strong>Año de Captura: </strong>{{ photo.photo_created_at }}</li>
+                        <li><strong>Registrado en: </strong>{{ photo.created_at }}</li>
+                        <li><strong>Modificado en: </strong>{{ photo.updated_at }}</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="photographies">
+                        <img width="500" height="600" src="{{photo.photo_image_path}}" alt="fotografia">
+                    </div>
+                </div>
+            </div>
+            <hr>
+        {% endfor %}
+    {% else %}
+        <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center mx-auto w-50" role="alert">
+            <i class="bi bi-exclamation-circle-fill me-2" style="font-size: 1.5rem;"></i>
+            <span class="text-center">No hay fotografías eliminadas.</span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endif %}
+</div>
+
+<a type="button" class="btn-minimal" href="/web/all_photos"> ← Regresar </a>
+{% endblock %}

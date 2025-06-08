@@ -1,0 +1,444 @@
+<style>
+    body {
+        background-color: #111;
+        color: #f5f5f5;
+        font-family: 'Times New Roman', serif;
+    }
+
+/*HOME*/
+    .inicio{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 90vh; /* ✅ Cambiado de height a min-height para evitar recorte */
+        color: white;
+        background-image: linear-gradient(0deg, black, transparent),
+                          url("/images/photographic_images/camera-bg.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        padding: 20px; /* ✅ Añadido para evitar que el contenido toque los bordes */
+        box-sizing: border-box;
+    }
+
+    .title-container {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .title-inicio {
+        font-size: 110px;
+        font-weight: bold;
+        text-align: center;
+        color: white;
+        text-shadow: 0 0 5px #8B0000, 0 0 10px #8B0000;
+        padding-bottom: 0.5rem;
+    }
+
+    .text-container {
+        justify-content: center; /* Alinea el contenido a la derecha */
+        align-items: center; /* Centrado vertical */
+        max-width: 100%;
+    }
+
+    .intro-text {
+        max-width: 700px;
+        width: 90%;
+        font-size: 1.6rem;
+        text-align: center;
+        padding: 20px;
+        box-shadow: 0 0 10px #8B0000, 0 0 20px #600000, 0 0 30px #600000;
+    }
+
+    .contenido {
+        flex: 1;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 15px; /* espacio entre imagen y texto */
+        padding: 50px;
+        color: white;
+        max-height: 900px;
+    }
+
+    .contenido .image-container img{
+        object-fit: cover;
+        border-radius: 10px;
+        justify-content: flex-start;
+    }
+
+    .photographies img {
+        width: 300px;
+        height: auto;
+        object-fit: contain;
+        margin: 15px;
+        justify-content: flex-end;
+        box-shadow: 0 0 10px #8B0000, 0 0 20px #600000, 0 0 30px #600000;
+    }
+
+    .photographers img {
+        width: 65%;
+        height: 65%;
+        object-fit: contain;
+        margin: 15px;
+        justify-content: flex-end;
+        box-shadow: 0 0 10px #8B0000, 0 0 20px #600000, 0 0 30px #600000;
+    }
+
+    /* BOTÓN */
+    .btn-minimal {
+        margin: 1rem;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        background-color: #8B0000;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+
+    .btn-minimal:hover {
+        background-color: #600000;
+    }
+
+
+    /* NAVBAR */
+    .nav-tabs .nav-link {
+        background-color: #8B0000;
+        color: white;
+        border: 1px solid transparent;
+        border-radius: 0;
+        transition: all 0.3s ease;
+        margin-right: 5px;
+        margin-top: 5px;
+    }
+
+    .nav-tabs .nav-link:hover {
+        background-color: white;
+        color: #8B0000;
+        border: 1px solid #8B0000;
+    }
+
+    .nav-tabs .nav-link.active {
+        background-color: #8B0000;
+        color: #8B0000;
+        border: 1px solid #8B0000;
+        border-bottom-color: #111; /* Oculta la línea inferior para simular pestaña activa */
+    }
+
+    .dropdown-menu {
+        background-color: white;
+        border: 1px solid #8B0000;
+        border-bottom-color: #111;
+    }
+
+    .dropdown-menu .dropdown-item {
+        color: black;
+    }
+
+    .dropdown-menu .dropdown-item:hover,
+    .dropdown-menu .dropdown-item:focus {
+        background-color: #600000; /* un tono más oscuro al pasar el mouse */
+        color: white;
+    }
+
+/*INFORMACIÓN*/
+    .info-title{
+        text-align: center;
+        margin-top: 10px;
+        background-color: #8B0000;
+    }
+
+    .carousel-inner {
+        min-height: 310px;
+    }
+
+    .card {
+        width: 30rem;
+        height: 41rem;
+        background-color: #f9f9f9;
+        border-left: 5px solid #8B0000;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;  /*Distribuye imagen y texto */
+        font-size: 18px;
+        margin: 20px auto;
+    }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        filter: invert(36%) sepia(100%) saturate(7493%) hue-rotate(353deg) brightness(95%) contrast(93%);
+    }
+
+    .contenedor-flex {
+        display: flex;
+        justify-content: center;
+        align-items: baseline;
+        gap: 10px;
+        padding: 10px;
+        flex-wrap: wrap;
+        margin: 10px;
+    }
+
+    .accordion {
+        width: 55%;
+    }
+
+
+    /* Color base del acordeón cerrado */
+    .accordion-button {
+        background-color: #8B0000;  /* vinotinto */
+        color: white;
+        font-weight: bold;
+        border: none;
+    }
+
+    /* Ícono (flecha) en blanco */
+    .accordion-button::after {
+        filter: brightness(0) invert(1); /* cambia color del ícono a blanco */
+    }
+
+    /* Estado al estar activo (abierto) */
+    .accordion-button:not(.collapsed) {
+        background-color: white;    /* fondo blanco */
+        color: #8B0000;              /* texto vinotinto */
+        border: none;
+    }
+
+    /* Cambia el ícono al abrir */
+    .accordion-button:not(.collapsed)::after {
+        filter: none; /* ícono vuelve a color oscuro */
+    }
+
+    /* Contenido del acordeón */
+    .accordion-body {
+        background-color: #f8f8f8;
+        color: #333;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    .offcanvas {
+        background-color: #333333;
+        color: white;
+    }
+
+    .offcanvas-title {
+        font-weight: bold;
+    }
+
+    /*CREADOR*/
+    .container-creador {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 10px;
+        flex-wrap: wrap;
+        margin: 15px;
+    }
+
+    .my-portfolio {
+        flex: 1;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 2fr));
+        gap: 10px;
+        padding: 5px;
+        margin: 20px;
+    }
+
+    .my-portfolio img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 0 15px rgba(75, 15, 35, 0.6); /* sombra vinotinto suave */
+    }
+
+    .my-portfolio img:hover{
+        transform: scale(1.03);
+        box-shadow: 0 0 10px #8B0000, 0 0 20px #6a142e, 0 0 30px #a01e3a; /* efecto neón más intenso */
+    }
+
+    .foto-creador {
+        width: 250px;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 50%;
+        transform: scale(1.03);
+        box-shadow: 0 0 10px #8B0000, 0 0 20px #600000, 0 0 30px #600000; /* efecto neón más intenso */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .redes-creador i {
+        font-size: 28px;
+        color: #8B0000;
+    }
+
+    .redes-creador a {
+        text-decoration: none;
+    }
+
+    .ratio {
+        width: 100%;
+        height: 100%;
+
+    }
+
+    /* FOOTER */
+    footer {
+        margin-top: auto;
+        background-color: #8B0000;
+        color: #6c757d;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .icono-redes i {
+        font-size: 32px;
+        margin-right: 5px;
+        color: white;
+        transition: color 0.3s;
+    }
+
+    .icono-redes i:hover {
+        color: black;
+    }
+
+    .icono-redes a {
+        text-decoration: none;
+    }
+
+    /* SEARCH PHOTOGRAPHER */
+    .filter-form {
+        margin: 10px;
+
+    }
+
+    /*FORM*/
+    .form-group {
+        margin: 2rem auto;
+        max-width: 450px;
+    }
+
+    .form-control:focus {
+        box-shadow: 0 0 10px #8B0000, 0 0 20px #600000, 0 0 30px #600000;
+    }
+
+    .form-select:focus {
+        box-shadow: 0 0 10px #8B0000, 0 0 20px #600000, 0 0 30px #600000;
+    }
+
+    .form-check-input:checked {
+        background-color: #600000;
+        border-color: white;
+        box-shadow: 0 0 10px #8B0000, 0 0 20px #600000, 0 0 30px #600000;
+    }
+
+    .form-check-input {
+        background-color: #6c757d;
+        border-color: white;
+        transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    .form-check-input:focus {
+        box-shadow: 0 0 10px #8B0000, 0 0 20px #600000, 0 0 30px #600000;
+        border-color: white;
+    }
+
+
+    button[type="submit"] {
+        margin-top: 1rem;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        background-color: #8B0000;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #600000;
+    }
+
+    .alert {
+        width: 100%;
+        height: 100%;
+    }
+
+    /*DISEÑO*/
+
+    table {
+        width: 80%;
+        margin: 20px auto; /* Centrar horizontalmente */
+        border-collapse: collapse; /* Quitar espacios entre bordes */
+    }
+
+    thead th {
+          background-color: #600000;
+          color: white;
+          text-align: center;
+    }
+
+
+    th, td {
+          padding: 12px 15px;
+          border: 1px solid #ddd;
+          text-align: left;
+    }
+
+    th:nth-child(3), td:nth-child(3),
+    th:nth-child(4), td:nth-child(4) {
+        width: 400px;
+    }
+
+    tbody tr:hover {
+        background-color: #333333; /* Resaltar fila al pasar mouse */
+    }
+
+    .pagination .page-item .page-link {
+        color: #fff;
+        background-color: #8B0000;
+        border: none;
+        margin: 0 4px;
+        border-radius: 80px;
+        transition: background-color 0.3s ease;
+
+    }
+
+    .pagination .page-item .page-link:hover {
+        background-color: #600000;
+    }
+
+    .pagination .page-item.active .page-link {
+        background-color: #000; /* negro */
+        color: #fff;
+    }
+
+    .pagination .page-item.disabled .page-link {
+        background-color: #333333;
+        color: white;
+        cursor: not-allowed;
+    }
+
+    .container {
+        max-width: 1000px;
+        width: 90%; /* usa porcentaje en lugar de px */
+        padding: 20px;
+        margin: 50px auto;
+        font-size: 1.2rem;
+        text-align: left;
+        box-shadow: 0 0 10px #8B0000, 0 0 20px #600000, 0 0 30px #600000;
+        box-sizing: border-box;
+    }
+
+
+</style>

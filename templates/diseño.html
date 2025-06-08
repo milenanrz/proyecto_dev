@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+{% block title %} Diseño del proyecto {% endblock %}
+{% block content %}
+
+<h2 class="info-title"> Diagrama de clases </h2>
+<div style="text-align: center;">
+    <img src="/images/photographic_images/Diagrama%20de%20clases.png" alt="diagrama-de-clases" >
+</div>
+
+<h2 class="info-title"> Mapa de endpoints </h2>
+<div>
+    <table border="1" cellpadding="6" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Método</th>
+                <th>URL</th>
+                <th>Descripción</th>
+                <th>Respuesta</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>GET</td>
+                <td>/</td>
+                <td>Página principal</td>
+                <td>Devuelve plantilla home.html</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/info</td>
+                <td>Página de información</td>
+                <td>Devuelve plantilla info.html</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/creador</td>
+                <td>Página del creador</td>
+                <td>Devuelve plantilla creador.html</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/all_photographers</td>
+                <td>Lista todos los fotógrafos activos (menos los eliminados)</td>
+                <td>Devuelve plantilla photographers/list.html con datos</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/new_photographer</td>
+                <td>Formulario para agregar un nuevo fotógrafo</td>
+                <td>Devuelve plantilla photographers/create.html</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/new_photographer</td>
+                <td>Procesa el formulario para crear fotógrafo</td>
+                <td>Redirecciona a /web/all_photographers</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/search_photographer</td>
+                <td>Formulario para buscar fotógrafos con filtros</td>
+                <td>Devuelve plantilla photographers/search.html</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/search_photographer</td>
+                <td>Procesa búsqueda con filtros y muestra resultados</td>
+                <td>Devuelve plantilla photographers/search.html con resultados</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/search_photographer_by_ID</td>
+                <td>Formulario para buscar fotógrafo por ID</td>
+                <td>Devuelve plantilla photographers/search_by_id.html</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/search_photographer_by_ID</td>
+                <td>Procesa búsqueda por ID y muestra resultado</td>
+                <td>Devuelve plantilla photographers/search_by_id.html con resultado</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/update_photographer</td>
+                <td>Formulario para modificar datos de fotógrafo</td>
+                <td>Devuelve plantilla photographers/update.html</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/update_photographer</td>
+                <td>Procesa actualización de fotógrafo</td>
+                <td>Redirecciona a /web/all_photographers</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/inactive_photographer</td>
+                <td>Marca fotógrafo como inactivo (is_alive = False)</td>
+                <td>Redirecciona a /web/all_photographers</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/delete_photographer</td>
+                <td>Marca fotógrafo como eliminado (is_deleted = True)</td>
+                <td>Redirecciona a /web/all_photographers</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/photographer_deleted</td>
+                <td>Lista fotógrafos eliminados</td>
+                <td>Devuelve plantilla photographers/deleted_list.html</td>
+            </tr>
+
+            <tr>
+                <td>GET</td>
+                <td>/all_photos</td>
+                <td>Lista todas las fotografías</td>
+                <td>Renderiza plantilla con todas las fotografías</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/new_photo</td>
+                <td>Formulario para agregar una nueva fotografía</td>
+                <td>Devuelve plantilla photors/create.html</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/new_photo</td>
+                <td>Procesa el formulario para agregar fotografía</td>
+                <td>Crea la fotografía y redirige a /web/all_photos</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/search_photo_by_ID</td>
+                <td>Formulario para buscar fotografía por ID</td>
+                <td>Devuelve plantilla photos/search_by_id.html con resultado</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/search_photo_by_ID</td>
+                <td>Procesa la búsqueda de fotografía por ID</td>
+                <td>Si no hay ID, redirige a /web/all_photos</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/search_photo_by_category</td>
+                <td>Formulario para buscar una fotografía por categoría</td>
+                <td>Devuelve plantilla photos/search.html para filtar</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/search_photo_by_category</td>
+                <td>Procesa búsqueda por categoría</td>
+                <td>Si no hay categoría, redirige a /web/all_photos</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/update_photo</td>
+                <td>Formulario para actualizar fotografía</td>
+                <td>Devuelve plantilla photos/update.html</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/update_photo</td>
+                <td>Procesa actualización de una fotografía</td>
+                <td>Actualiza la fotografía y redirige a /web/all_photos</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/delete_photo</td>
+                <td>Marca una fotografía como eliminada</td>
+                <td>Redirige a /web/all_photos</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/photo_deleted</td>
+                <td>Lista de fotografías eliminadas</td>
+                <td>Renderiza plantilla con fotografías marcadas como eliminadas</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/planeacion</td>
+                <td>Página de planeación</td>
+                <td>Renderiza plantilla planeacion.html</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/diseño</td>
+                <td>Página de diseño</td>
+                <td>Renderiza plantilla diseño.html</td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+
+<h2 class="info-title"> Wireframe </h2>
+<div style="text-align: center;">
+    <img src="/images/photographic_images/Wireframe.png" alt="wireframe" style="width: 100%; margin: 15px auto;">
+</div>
+<hr>
+<a type="button" class="btn-minimal" href="/web"> ← Regresar </a>
+
+{% endblock %}

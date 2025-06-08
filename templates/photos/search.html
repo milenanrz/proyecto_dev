@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %} Filtro {% endblock %}
+{% block content %}
+
+<h2 class="info-title"> Filtro </h2>
+<form class="form-group" method="post" enctype="multipart/form-data" action="/web/search_photo_by_category">
+    <div class="form-floating mb-3">
+        <select class="form-select" name="select_category" id="category">
+            <option value="">Todos los estilos fotográficos</option>
+            {% for category in categories %}
+            <option value="{{ category }}">{{ category }}</option>
+            {% endfor %}
+        </select>
+        <label for="category"> Categoría </label>
+    </div>
+
+    <button type="submit">Buscar</button>
+</form>
+
+<h2 class="info-title"> Resultados </h2>
+<div class="container my-4">
+    {% if photo %}
+        {% for p in photo %}
+            <div class="row">
+                <div class="col-md-6">
+                    <ul>
+                        <li><strong>ID: </strong>{{ p.id }}</li>
+                        <li><strong>Título: </strong>{{ p.title }}</li>
+                        <li><strong>Fotógrafo: </strong>{{ p.photographer_name }}</li>
+                        <li><strong>Estilo Fotográfico: </strong>{{ p.category.value }}</li>
+                        <li><strong>Año de Captura: </strong>{{ p.photo_created_at }}</li>
+                        <li><strong>Registrado en: </strong>{{ p.created_at }}</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="photographies">
+                        <img width="500" height="600" src="{{p.photo_image_path}}" alt="fotografia">
+                    </div>
+                </div>
+            </div>
+            <hr>
+        {% endfor %}
+    {% elif request.method == "POST" %}
+
+        <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center mx-auto w-50" role="alert">
+          <i class="bi bi-exclamation-circle-fill me-2" style="font-size: 1.5rem;"></i>
+          <span class="text-center">No se encontró ninguna coincidencia.</span>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+    {% endif %}
+</div>
+
+{% endblock %}

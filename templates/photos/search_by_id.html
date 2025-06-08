@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %} Buscar fotografía por ID {% endblock %}
+{% block content %}
+
+<form class="form-group" method="post" enctype="multipart/form-data" action="/web/search_photo_by_ID">
+
+    <h2 class="info-title"> Búsqueda por ID </h2>
+
+    <div class="form-floating mb-3">
+        <input class="form-control" type="number" min="0" name="photo_id" id="photo_id" placeholder="ID de la fotografía">
+        <label for="photo_id">Ingrese el ID a buscar</label>
+    </div>
+
+    <button type="submit">Buscar</button>
+</form>
+
+<h2 class="info-title"> Resultados </h2>
+<div class="container my-4">
+    {% if photo %}
+        <div class="row">
+            <div class="col-md-6">
+                <ul>
+                    <li><strong>ID: </strong>{{ photo.id }}</li>
+                    <li><strong>Título: </strong>{{ photo.title }}</li>
+                    <li><strong>Fotógrafo: </strong>{{ photo.photographer_name }}</li>
+                    <li><strong>Estilo Fotográfico: </strong>{{ photo.category.value }}</li>
+                    <li><strong>Año de Captura: </strong>{{ photo.photo_created_at }}</li>
+                    <li><strong>Registrado en: </strong>{{ photo.created_at }}</li>
+                </ul>
+            </div>
+
+            <div class="col-md-6">
+                <div class="photographies">
+                    <img width="500" height="600" src="{{photo.photo_image_path}}" alt="fotografia">
+                </div>
+            </div>
+        </div>
+    {% elif request.method == "POST" %}
+
+        <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center mx-auto w-50" role="alert">
+          <i class="bi bi-exclamation-circle-fill me-2" style="font-size: 1.5rem;"></i>
+          <span class="text-center">No se encontró ninguna fotografía con ese ID.</span>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+    {% endif %}
+</div>
+
+
+{% endblock %}

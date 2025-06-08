@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% block title %} Filtro {% endblock %}
+
+{% block content %}
+
+<h2 class="info-title"> Filtro </h2>
+
+<form class="form-group" method="post" enctype="multipart/form-data" action="/web/search_photographer">
+
+    <div class="form-floating mb-3">
+        <select class="form-select" name="is_alive" id="is_alive">
+            <option value="">Todos</option>
+            <option value="true">Activos</option>
+            <option value="false">Inactivos</option>
+        </select>
+        <label for="is_alive">Estado</label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <select class="form-select" name="photographer_genre" id="genre">
+            <option value="">Todos los géneros</option>
+            {% for genre in genres %}
+            <option value="{{ genre }}">{{ genre }}</option>
+            {% endfor %}
+        </select>
+        <label for="genre">Género</label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <select class="form-select" name="photographer_nationality" id="nationality">
+            <option value="">Todas las nacionalidades</option>
+            {% for nationality in nationalities %}
+            <option value="{{ nationality }}">{{ nationality }}</option>
+            {% endfor %}
+        </select>
+        <label for="nationality"> Nacionalidad </label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <select class="form-select" name="photographer_style" id="photographic_style_name">
+            <option value="">Todos los estilos fotográficos</option>
+            {% for photographic_style_name in photographic_styles_name %}
+            <option value="{{ photographic_style_name }}">{{ photographic_style_name }}</option>
+            {% endfor %}
+        </select>
+        <label for="photographic_style_name"> Estilo fotográfico </label>
+    </div>
+
+    <button type="submit"> Filtrar </button>
+
+</form>
+
+<h2 class="info-title"> Resultados </h2>
+<div class="container my-4">
+    {% if photographer %}
+        {% for p in photographer %}
+            <div class="row">
+                <div class="col-md-6">
+                    <ul>
+                        <li><strong>ID: </strong>{{ p.id }}</li>
+                        <li><strong>Nombre: </strong> {{ p.name }}</li>
+                        <li><strong>Estado: </strong> {{ "Activo" if p.is_alive else "Inactivo" }}</li>
+                        <li><strong>Nacionalidad: </strong> {{ p.nationality.value }}</li>
+                        <li><strong>Género: </strong> {{ p.genre.value }}</li>
+                        <li><strong>Estilo fotográfico: </strong> {{ p.photographic_style_name.value }}</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="photographers">
+                        <img src="{{p.photographer_image_path}}" alt="foto-fotógrafo">
+                    </div>
+                </div>
+            </div>
+            <hr>
+        {% endfor %}
+    {% elif request.method == "POST" %}
+        <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center mx-auto w-50" role="alert">
+            <i class="bi bi-exclamation-circle-fill me-2" style="font-size: 1.5rem;"></i>
+            <span class="text-center">No se encontraron coincidencias.</span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endif %}
+</div>
+
+{% endblock %}

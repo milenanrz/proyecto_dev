@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %} Adicionar fotógrafo {% endblock %}
+{% block content %}
+
+<form class="form-group" method="post" enctype="multipart/form-data" action="/web/new_photographer">
+
+    <h2 class="info-title"> Registro de un fotógrafo </h2>
+
+    <div class="form-floating mb-3">
+        <input class="form-control" type="text" name="name" id="name" placeholder="Nombre del fotógrafo">
+        <label for="name">Nombre del fotógrafo</label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <select class="form-select" name="genre" id="genre">
+            <option value="" disabled selected>Seleccione un género</option>
+            {% for genre in genres %}
+            <option value="{{ genre }}">{{ genre }}</option>
+            {% endfor %}
+        </select>
+        <label for="genre">Género</label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <select class="form-select" name="nationality" id="nationality">
+            <option value="" disabled selected>Seleccione un país</option>
+            {% for nationality in nationalities %}
+            <option value="{{ nationality }}">{{ nationality }}</option>
+            {% endfor %}
+        </select>
+        <label for="nationality"> Nacionalidad </label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <select class="form-select" name="photographic_style_name" id="photographic_style_name">
+            <option value="" disabled selected>Seleccione un estilo fotográfico</option>
+            {% for photographic_style_name in photographic_styles_name %}
+            <option value="{{ photographic_style_name }}">{{ photographic_style_name }}</option>
+            {% endfor %}
+        </select>
+        <label for="photographic_style_name"> Estilo fotográfico </label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input class="form-control" type="file" name="photographer_image" id="photographer_image" placeholder="Ingrese la foto" accept="image/*">
+        <label for="photographer_image"> Foto </label>
+    </div>
+
+    <div class="form-check form-switch">
+        <input type="hidden" name="is_alive" value="0">
+        <input class="form-check-input" type="checkbox" name="is_alive" id="is_alive" value="1">
+        <label class="form-select-label" for="is_alive">Activo</label>
+    </div>
+
+
+    <button type="submit"> Registrar fotógrafo </button>
+
+</form>
+
+
+{% endblock %}

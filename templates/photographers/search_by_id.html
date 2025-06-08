@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %} Buscar fotógrafo por ID {% endblock %}
+
+{% block content %}
+
+<form class="form-group" method="post" enctype="multipart/form-data" action="/web/search_photographer_by_ID">
+
+    <h2 class="info-title"> Búsqueda por ID </h2>
+
+    <div class="form-floating mb-3">
+        <input class="form-control" type="number" min="0" name="photographer_id" id="photographer_id" placeholder="ID del fotógrafo">
+        <label for="photographer_id">Ingrese el ID a buscar</label>
+    </div>
+
+    <button type="submit">Buscar</button>
+</form>
+
+
+<h2 class="info-title"> Resultados </h2>
+<div class="container my-4">
+    {% if photographer %}
+        <div class="row">
+            <div class="col-md-6">
+                <ul>
+                    <li><strong>ID: </strong>{{ photographer.id }}</li>
+                    <li><strong>Nombre: </strong>{{ photographer.name }}</li>
+                    <li><strong>Activo: </strong>{{ "Sí" if photographer.is_alive else "No" }}</li>
+                    <li><strong>Nacionalidad: </strong>{{ photographer.nationality.value }}</li>
+                    <li><strong>Género: </strong>{{ photographer.genre.value }}</li>
+                    <li><strong>Estilo fotográfico: </strong>{{ photographer.photographic_style_name.value }}</li>
+                </ul>
+            </div>
+
+            <div class="col-md-6">
+                <div class="photographers">
+                    <img src="{{photographer.photographer_image_path}}" alt="foto-fotógrafo">
+                </div>
+            </div>
+        </div>
+    {% elif request.method == "POST" %}
+
+        <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center mx-auto w-50" role="alert">
+            <i class="bi bi-exclamation-circle-fill me-2" style="font-size: 1.5rem;"></i>
+            <span class="text-center">No se encontró ningún fotógrafo con ese ID.</span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endif %}
+</div>
+
+{% endblock %}
